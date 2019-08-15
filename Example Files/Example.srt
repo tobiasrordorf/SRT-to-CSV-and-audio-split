@@ -1,0 +1,9 @@
+1
+00:00:08,240 --> 00:00:09,720
+This is an example of srt file,
+to demonstrate the use of this script.
+
+2
+00:00:09,960 --> 00:00:11,960
+the start and end times are extracted
+as well as the transcripts saved,

@@ -6,7 +6,34 @@ import io
 from glob import glob
 import re
 import numpy as np
+import sys
 
+# Create csv directory
+
+csv_path = './csv'
+
+if not os.path.exists(csv_path):
+    try:
+        os.mkdir(csv_path)
+    except OSError:
+        print('Creation of directory %s failed' %csv_path)
+
+#Check if srt_files directory exists and contains srt files
+
+srt_path = './srt_files'
+
+if os.path.exists(srt_path):
+    print('Folder %s exists.. continuing processing..' %srt_path)
+else:
+    print('Folder "srt_files" is missing')
+    try:
+        os.mkdir(srt_path)
+    except OSError:
+        print('Creation of directory %s failed' %srt_path)
+    else:
+        print('Successfully created the directory %s' %srt_path)
+    print('--> Please add srt files to folder %s' %srt_path)
+    sys.exit()
 
 #First change encoding from cp1252 to utf8 to keep Umlaute (e.g. ä, ö, ü)
 def change_encoding(srt):
@@ -15,7 +42,6 @@ def change_encoding(srt):
         # process Unicode text
     with io.open(srt, 'w', encoding='utf8') as f:
         f.write(text)
-
 
 def convert_srt_to_csv(file):
     with open(file, 'r') as h:
@@ -49,6 +75,7 @@ def convert_srt_to_csv(file):
 
     df_text['id'] = np.arange(len(df_text))
     id_extension = os.path.basename(file).replace('.srt', '_')
+    file_extension = id_extension.replace('_', '')
     df_text['id'] = id_extension +  df_text['id'].map(str)
 
     #converting the times to milliseconds
@@ -69,12 +96,20 @@ def convert_srt_to_csv(file):
 
     df_text['start_times'] = df_text['start_times'].apply(conv_int)
 
-    df_text.to_csv('./csv/' + id_extension + '.csv', index=False, header=True, encoding='utf-8')
+    df_text.to_csv('./csv/' + file_extension + '.csv', index=False, header=True, encoding='utf-8')
 
-for srt in glob('./transcript/*.srt'):
+srt_counter = len(glob('./srt_files/' + '*.srt'))
+
+if srt_counter == 0:
+    print('!!! Please add srt_file(s) to %s-folder' %srt_path)
+    sys.exit()
+
+print('Encoding srt_file(s) to utf8...')
+for srt in glob('./srt_files/*.srt'):
     change_encoding(srt)
-print('Encoding changed')
+print('Encoding of %s-files changed' %srt_counter)
 
-for file in glob('./transcript/*.srt'):
+print('Extracting information from srt_file(s) to csv_files')
+for file in glob('./srt_files/*.srt'):
     convert_srt_to_csv(file)
-print('All files converted and saved as csv to ./csv')
+print('%s-file(s) converted and saved as csv-files to ./csv' %srt_counter)

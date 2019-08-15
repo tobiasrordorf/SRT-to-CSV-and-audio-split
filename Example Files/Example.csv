@@ -1,0 +1,3 @@
+id,start_times,end_times,transcript
+Example_0,8034,9720,"This is an example of srt file, to demonstrate the use of this script. "
+Example_1,9711,11960,"the start and end times are extracted as well as the transcripts saved,"
