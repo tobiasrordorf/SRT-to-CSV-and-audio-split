@@ -96,7 +96,7 @@ def convert_srt_to_csv(file):
 
     df_text['start_times'] = df_text['start_times'].apply(conv_int)
 
-    df_text.to_csv('./csv/' + file_extension + '.csv', index=False, header=True, encoding='utf-8')
+    df_text.to_csv('./csv/' + file_extension + '.csv', index=False, header=True, encoding='utf-8-sig')
 
 srt_counter = len(glob('./srt_files/' + '*.srt'))
 
