@@ -1,5 +1,3 @@
-## This script will first change the encoding of srt files and then convert it to a csv
-
 import pandas as pd
 import os
 import io
@@ -49,10 +47,14 @@ def convert_srt_to_csv(file):
 
     df_text['id'] = np.arange(len(df_text))
     id_extension = os.path.basename(file).replace('.srt', '_')
-    id_extension = id_extension.replace('_M', '-M')
-    file_extension = id_extension.replace('o_', 'o')
-    file_extension = file_extension.replace('_M', '-M')
+    id_extension = id_extension.replace(' ', '_')
+    id_extension = id_extension.replace('-', '_')
+    id_extension = id_extension.replace('.', '_')
+    id_extension = id_extension.replace('__', '_')
+    id_extension = id_extension.replace('___', '_')
     df_text['id'] = id_extension +  df_text['id'].map(str)
+
+    file_extension = id_extension[:-1]
 
     #converting the times to milliseconds
     def convert_to_ms(time):
