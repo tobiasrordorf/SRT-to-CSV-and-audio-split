@@ -31,6 +31,10 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 
 <b>First:</b> Create a folder called "srt_files" where you store your srt_files and a folder "audio" where you store your audio-files (wmv or mp4).
 
+### Example Files
+
+<b> Check the folder Example Files to see how the information is extracted from an srt-file to a csv-file.</b>
+
 ### Modules
 <p><b>- change_encoding: </b>The encoding of srt-files is changed from cp1252 to utf-8.</p>
 <p><b>- convert_srt_to_csv: </b>Start time, end-time and subtitle are extracted from the srt-files and stored in a csv. In preparation for audio-splitting, a column id is generated from the filename with the addition of a unique number.</p>
