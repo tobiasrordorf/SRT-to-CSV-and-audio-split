@@ -33,7 +33,7 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 
 ### Example Files
 
-<b> Check the folder Example Files to see how the information is extracted from an srt-file to a csv-file.</b>
+<p> Check the folder Example Files to see how the information is extracted from an srt-file to a csv-file.</p>
 
 ### Modules
 <p><b>- change_encoding: </b>The encoding of srt-files is changed from cp1252 to utf-8.</p>
