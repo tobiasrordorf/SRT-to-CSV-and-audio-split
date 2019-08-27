@@ -51,7 +51,7 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 ## Check characters
 
 <p> In order to compile the necessary language models required by DeepSpeech, the alphabet.txt has to be configured to the generated dataset.</p>
-<p> The script check_caracters.py (provided by DeepSpeech) generates a list of characters that appear in the csv-files. It can be instantiated like this:"$ python3 ./Check_Characters/check_characters.py -csv './final_csv/dev.csv' -alpha"</p>
+<p> The script check_caracters.py (provided by DeepSpeech) generates a list of characters that appear in the csv-files. It can be instantiated like this: "$ python3 ./Check_Characters/check_characters.py -csv './final_csv/dev.csv' -alpha"</p>
 <p> Use this script to check that the text has been cleaned of unwanted characters. If unwanted characters appear, add them to the module "clean_unwanted_characters".</p>
 
 ## About this project:
