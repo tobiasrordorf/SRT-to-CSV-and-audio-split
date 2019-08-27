@@ -8,6 +8,8 @@ Therefore, this repo offers the possibility to easily split audio files based on
 
 - [Prerequisites](#prerequisites)
 - [Walk-through](#walk-through)
+- [Check-Characters](#Check-Characters)
+- [About this project](#About-this-project)
 
 
 ## Prerequisites
@@ -39,4 +41,16 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 <p><b>- merge_csv: </b>Merge_csv joins all seperate csv-files.</p>
 <p><b>- merge_transcripts_and_wav_files: </b>This module matches the transcripts to the available audio files.</p>
 <p><b>- clean_unwanted_characters: </b>Unwanted characters are removed.</p>
-<p><b>- split_dataset: </b>The final transcripts are splitted into train, test, and dev files and stored in './final_csv'. (train: 75%, test: 15%, dev: 10%)</p>
+<p><b>- split_dataset: </b>The final transcripts are splitted into train, test, and dev files and stored in "./final_csv". (train: 75%, test: 15%, dev: 10%)</p>
+
+
+## Check characters
+
+<p> In order to compile the necessary language models required by DeepSpeech, the alphabet.txt has to be configured to the generated dataset.</p>
+<p> The script check_caracters.py (provided by DeepSpeech) generates a list of characters that appear in the csv-files. It can be instantiated like this: <br>
+"$ python3 ./Check_Characters/check_characters.py -csv './final_csv/dev.csv' -alpha"</p>
+<p> Use this script to check that the text has been cleaned of unwanted characters. If unwanted characters appear, add them to the module "clean_unwanted_characters".</p>
+
+## About this project:
+
+<p>This importer was created as part of the Master Thesis "Automatic Speech Recognition for Swiss German using Deep Neural Networks" for the degree Master of Business Innovation at the University of St. Gallen by Tobias Rordorf. In case of questions please feel free to contact me through <a href='https://www.linkedin.com/in/tobiasrordorf/'>LinkedIn</a>.
