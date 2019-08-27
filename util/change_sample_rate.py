@@ -30,7 +30,7 @@ def pre_process_audio(audio_path):
                 next
 
     print('Downsampling complete')
-    print('------------------------------------------------------------------')
+    print('---------------------------------------------------------------------')
 
     s = 0
     print('Changing bit pro sample...')
@@ -46,7 +46,7 @@ def pre_process_audio(audio_path):
                 next
 
     print('Bit pro sample changed')
-    print('------------------------------------------------------------------')
+    print('---------------------------------------------------------------------')
 
     #shutil.rmtree('./audio', ignore_errors=True)
 
