@@ -30,13 +30,13 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 <b>First:</b> Create a folder called "srt_files" where you store your srt_files and a folder "audio" where you store your audio-files (wmv or mp4).
 
 ### Modules
-<b>change_encoding</b>
-<b>convert_srt_to_csv</b>
-<b>wmv_to_wav & mp4_to_wav</b>
-<b>pre_process_audio</b>
-<b>split_files</b>
-<b>create_DS_csv</b>
-<b>merge_csv</b>
-<b>merge_transcripts_and_wav_files</b>
-<b>clean_unwanted_characters</b>
-<b>split_dataset</b>
+<p><b>change_encoding</b></p>
+<p><b>convert_srt_to_csv</b></p>
+<p><b>wmv_to_wav & mp4_to_wav</b></p>
+<p><b>pre_process_audio</b></p>
+<p><b>split_files</b></p>
+<p><b>create_DS_csv</b></p>
+<p><b>merge_csv</b></p>
+<p><b>merge_transcripts_and_wav_files</b></p>
+<p><b>clean_unwanted_characters</b></p>
+<p><b>split_dataset</b></p>
