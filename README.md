@@ -1,8 +1,8 @@
-# SRT-to-CSV-and-audio-split
+# Split audio according to information in srt-file.
 
-To be able to train DeepSpeech, audio-files should not be longer than 10s.
-Therefore, this repo offers the possibility to easily splice audio files and prepare corresponding transcript files.
-Split long audio files based on subtitle-info in SRT File (Transcript saved in CSV)
+To be able to train the speech-recognition engine <a href='https://github.com/mozilla/DeepSpeech'> DeepSpeech</a>, audio-files should not be longer than 10s.
+Therefore, this repo offers the possibility to easily split audio files based on the subtitle-info in srt-files and prepare corresponding transcript files.
+
 
 **Table of Contents**
 
@@ -25,4 +25,18 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 
 <b>This section will explain what the modules and script do in order to provide a deeper understanding of the individual steps and facilitate modification</b>
 
+FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with encoding "cp1252" (a.k.a Windows 1252). The reason for this is that in order to keep characters such as "ä", the files have to be encoded to "utf8". If your files are alread in "utf8", then deactive the module "change_encoding"
+
 <b>First:</b> Create a folder called "srt_files" where you store your srt_files and a folder "audio" where you store your audio-files (wmv or mp4).
+
+### Modules
+<b>change_encoding</b>
+<b>convert_srt_to_csv</b>
+<b>wmv_to_wav & mp4_to_wav</b>
+<b>pre_process_audio</b>
+<b>split_files</b>
+<b>create_DS_csv</b>
+<b>merge_csv</b>
+<b>merge_transcripts_and_wav_files</b>
+<b>clean_unwanted_characters</b>
+<b>split_dataset</b>
