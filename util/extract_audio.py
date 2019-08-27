@@ -1,4 +1,3 @@
-
 import sys
 from moviepy.editor import *
 from glob import glob
