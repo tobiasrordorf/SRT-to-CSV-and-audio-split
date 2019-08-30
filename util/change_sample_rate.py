@@ -6,7 +6,7 @@ import sys
 import shutil
 
 def pre_process_audio(audio_path):
-    path_audio_processed = './ready_for_slice/'
+    path_audio_processed = './ready_for_slice_2/'
     if not os.path.exists(path_audio_processed):
         try:
             os.mkdir(path_audio_processed)
@@ -38,6 +38,7 @@ def pre_process_audio(audio_path):
         if(file.endswith('.wav')):
             try:
                 nameSolo_2 = file.rsplit('.', 1)[0]
+                #nameSolo_2 = nameSolo_2.replace('')
                 data, samplerate = soundfile.read(path_audio_processed + file)
                 soundfile.write(path_audio_processed + nameSolo_2 + '.wav', data, samplerate, subtype='PCM_16')
                 s = s + 1

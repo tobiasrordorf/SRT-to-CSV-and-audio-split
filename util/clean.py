@@ -6,18 +6,27 @@ def clean_unwanted_characters(final_csv_path):
 
     df_ds_final = pd.read_csv('./merged_csv/'+final_csv_path)
 
-    #replace - with 'bis'
+    df_ds_final['transcript'] = df_ds_final['transcript'].replace('<font color=#91FFFF>', '', regex=True)
+    df_ds_final['transcript'] = df_ds_final['transcript'].replace('<font color=#72FD59>', '', regex=True)
+    df_ds_final['transcript'] = df_ds_final['transcript'].replace('<font color=#E8E858>', '', regex=True)
+    df_ds_final['transcript'] = df_ds_final['transcript'].replace('<font color=#FFFFFF>', '', regex=True)
+    df_ds_final['transcript'] = df_ds_final['transcript'].replace('</font>', '', regex=True)
+
+
+
 
 
     #Characters to be removed
-    punct = str(['.!"#$%&\'()*+,-/:;<=>?@[\\]^_°`{}~ ̀ ̆ ̃ ́'])
+    punct = str(['.!"#$%&\'()*+,-/:;<–=>?@[\\]^_°`{}~ ̀ ̆ ̃ ́'])
     transtab = str.maketrans(dict.fromkeys(punct, ' '))
     df_ds_final = df_ds_final.dropna()
 
     df_ds_final['transcript'] = '£'.join(df_ds_final['transcript'].tolist()).translate(transtab).split('£')
 
     df_ds_final['transcript'] = df_ds_final['transcript'].str.lower()
-    df_ds_final['transcript'] = df_ds_final['transcript'].replace('  ', ' ', regex=True)
+    df_ds_final['transcript'] = df_ds_final['transcript'].replace('\s+', ' ', regex=True)
+    df_ds_final['transcript'] = df_ds_final['transcript'].str.strip()
+
     #Save cleaned files
     final_path = final_csv_path[:-4]
     df_ds_final.to_csv('./merged_csv/'+final_path + '_cleaned.csv', header=True, index=False, encoding='utf-8-sig')

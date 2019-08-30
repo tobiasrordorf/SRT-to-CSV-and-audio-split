@@ -7,7 +7,7 @@ def merge_transcripts_and_wav_files(transcript_path, DS_csv):
     df_transcripts = pd.read_csv(transcript_path)
     df_files = pd.read_csv(DS_csv)
 
-    path = '/Users/TobiasRordorf/Desktop/GitHub/SRT-to-CSV-and-audio-split/sliced_audio/'
+    path = '/Volumes/Volume/audio_sliced/'
     df_files['id'] = df_files['wav_filename'].replace(path, '', regex=True)
 
     #drop unnecessary columns
