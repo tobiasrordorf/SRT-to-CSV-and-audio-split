@@ -69,7 +69,7 @@ def convert_srt_to_csv(file):
         new_start = int(start)
         return(new_start)
 
-    df_text['start_times'] = df_text['start_times'].apply(convert_to_ms) * 0.975 #subtracting 2.5% of start_time because of scarce splitting
+    df_text['start_times'] = df_text['start_times'].apply(convert_to_ms)
     df_text['end_times'] = df_text['end_times'].apply(convert_to_ms)
 
     df_text['start_times'] = df_text['start_times'].apply(conv_int)

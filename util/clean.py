@@ -29,6 +29,7 @@ def clean_unwanted_characters(final_csv_path):
 
     #Save cleaned files
     final_path = final_csv_path[:-4]
+    print('Length of ds_final: {}'.format(len(df_ds_final)))
     df_ds_final.to_csv('./merged_csv/'+final_path + '_cleaned.csv', header=True, index=False, encoding='utf-8-sig')
 
     print('Final Files cleaned of unwanted characters')

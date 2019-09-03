@@ -23,7 +23,7 @@ from util.split import split_dataset
 start_time = time.time()
 
 #Check if srt_files directory exists and contains srt files
-
+'''
 srt_path = './srt_files'
 
 if os.path.exists(srt_path):
@@ -67,19 +67,20 @@ if srt_counter == 0:
 '''
 #Create directories
 create_directories()
-
+'''
 #Changing encoding from "cp1252" (a.k.a Windows 1252)to "utf-8-sig"
 print('Encoding srt_file(s) to utf8...')
 for srt in glob('./srt_files/*.srt'):
     change_encoding(srt)
-print('Encoding of %s-files changed' %srt_counter)
+print('Encoding of {}-files changed'.format(srt_counter))
 print('---------------------------------------------------------------------')
 
 #Extracting information from srt-files to csv
 print('Extracting information from srt_file(s) to csv_files')
 for file in glob('./srt_files/*.srt'):
+    print(file)
     convert_srt_to_csv(file)
-print('%s-file(s) converted and saved as csv-files to ./csv' %srt_counter)
+print('{}-file(s) converted and saved as csv-files to ./ready_for_slice'.format(srt_counter))
 print('---------------------------------------------------------------------')
 
 #extract audio (wav) from wmw
@@ -98,7 +99,7 @@ print('---------------------------------------------------------------------')
 pre_process_audio('./audio/')
 print('Pre-processing of audio files is complete.')
 print('---------------------------------------------------------------------')
-
+'''
 #now slice audio according to start- and end-times in csv
 print('Slicing audio according to start- and end_times of transcript_csvs...')
 counter = 0
@@ -112,12 +113,12 @@ for item in glob('./ready_for_slice/*.csv'):
     else:
         next
 
-wav_counter = len(glob('/Volumes/Volume/audio_sliced/' + '*.wav'))
+wav_counter = len(glob('./sliced_audio/' + '*.wav'))
 print('Slicing complete. {} files in dir "sliced_audio"'.format(wav_counter))
 print('---------------------------------------------------------------------')
 
 #Now create list of filepaths and -size of dir ./sliced_audio
-create_DS_csv('/Volumes/Volume/audio_sliced/')
+create_DS_csv('./sliced_audio/')
 print('DS_csv with Filepaths - and sizes created.')
 print('---------------------------------------------------------------------')
 
@@ -125,7 +126,7 @@ print('---------------------------------------------------------------------')
 merge_csv('./ready_for_slice/')
 print('Merged csv with all transcriptions created.')
 print('---------------------------------------------------------------------')
-'''
+
 #merge the csv with transcriptions and the file-csv with paths and sizes
 transcript_path = './merged_csv/Full_Transcript.csv'
 DS_path = './merged_csv/Filepath_Filesize.csv'
