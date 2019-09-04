@@ -99,7 +99,7 @@ print('---------------------------------------------------------------------')
 pre_process_audio('./audio/')
 print('Pre-processing of audio files is complete.')
 print('---------------------------------------------------------------------')
-'''
+
 #now slice audio according to start- and end-times in csv
 print('Slicing audio according to start- and end_times of transcript_csvs...')
 counter = 0
@@ -113,12 +113,12 @@ for item in glob('./ready_for_slice/*.csv'):
     else:
         next
 
-wav_counter = len(glob('./sliced_audio/' + '*.wav'))
+wav_counter = len(glob('/Volumes/Volume/sliced_audio/' + '*.wav'))
 print('Slicing complete. {} files in dir "sliced_audio"'.format(wav_counter))
 print('---------------------------------------------------------------------')
 
 #Now create list of filepaths and -size of dir ./sliced_audio
-create_DS_csv('./sliced_audio/')
+create_DS_csv('/Volumes/Volume/sliced_audio/')
 print('DS_csv with Filepaths - and sizes created.')
 print('---------------------------------------------------------------------')
 
@@ -126,7 +126,7 @@ print('---------------------------------------------------------------------')
 merge_csv('./ready_for_slice/')
 print('Merged csv with all transcriptions created.')
 print('---------------------------------------------------------------------')
-
+'''
 #merge the csv with transcriptions and the file-csv with paths and sizes
 transcript_path = './merged_csv/Full_Transcript.csv'
 DS_path = './merged_csv/Filepath_Filesize.csv'

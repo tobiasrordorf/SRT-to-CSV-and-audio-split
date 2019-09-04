@@ -19,13 +19,14 @@ from util.merge_csv import merge_csv
 from util.merge_transcripts_and_files import merge_transcripts_and_wav_files
 from util.clean import clean_unwanted_characters
 from util.split import split_dataset
+from util.audio_metrics import audio_metrics
 
 start_time = time.time()
 
 #Check if srt_files directory exists and contains srt files
 
 srt_path = './srt_files'
-
+'''
 if os.path.exists(srt_path):
     print('Folder %s exists.. continuing processing..' %srt_path)
 else:
@@ -61,13 +62,13 @@ srt_counter = len(glob('./srt_files/' + '*.srt'))
 if srt_counter == 0:
     print('!!! Please add srt_file(s) to %s-folder' %srt_path)
     sys.exit()
-
+'''
 ################################################################################
 #############################CALL THE FUNCTIONS#################################
 
 #Create directories
 create_directories()
-
+'''
 #Changing encoding from "cp1252" (a.k.a Windows 1252)to "utf-8-sig"
 print('Encoding srt_file(s) to utf8...')
 for srt in glob('./srt_files/*.srt'):
@@ -98,7 +99,7 @@ print('---------------------------------------------------------------------')
 pre_process_audio('./ready_for_slice/')
 print('Pre-processing of audio files is complete.')
 print('---------------------------------------------------------------------')
-
+'''
 #now slice audio according to start- and end-times in csv
 print('Slicing audio according to start- and end_times of transcript_csvs...')
 for item in glob('./ready_for_slice/*.csv'):
@@ -143,9 +144,12 @@ to_split_path = 'DS_training_final_cleaned.csv'
 split_dataset(to_split_path)
 print('Datasplit completed.')
 
-print('********************************************** FINISHED ***********************************************')
+print('********************************************** FINISHED ************************************************')
 print('The preprocessing of wmv or mp4 files and their corresponding srt files is completed')
 print('Final processed audio is in ./sliced_audio and final csv-files in ./final_csv')
+print('******************************************* AUDIO METRICS **********************************************')
+if os.path.isdir('./merged_csv/') is True and os.path.isdir('./final_csv/') is True:
+    audio_metrics()
 print('******************************************* Execution Time *********************************************')
 #evaluate the scripts execution time
 end_time = time.time()

@@ -7,8 +7,19 @@ def merge_transcripts_and_wav_files(transcript_path, DS_csv):
     df_transcripts = pd.read_csv(transcript_path)
     df_files = pd.read_csv(DS_csv)
 
-    path = '/Users/TobiasRordorf/Desktop/GitHub/SRT-to-CSV-and-audio-split/sliced_audio/'
-    df_files['id'] = df_files['wav_filename'].replace(path, '', regex=True)
+    #by splitting the path at / and then choosing -1, the filename can be extracted
+    def remove_path(path):
+        path = path.split('/')[-1]
+        return path
+
+    df_files['id'] = df_files['wav_filename'].apply(remove_path)
+
+    #filter out duration of less than 10 seconds
+    def convert(duration):
+        time = float(duration)
+        return time
+    df_files['duration'] = df_files['duration'].apply(convert)
+    df_files = df_files[df_files['duration']<10.00]
 
     #drop unnecessary columns
     df_transcripts.drop(['start_times','end_times'], axis=1, inplace=True)
