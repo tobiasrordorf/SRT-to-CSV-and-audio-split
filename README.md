@@ -44,6 +44,7 @@ FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with en
 <p><b>- merge_transcripts_and_wav_files: </b>This module matches the transcripts to the available audio files.</p>
 <p><b>- clean_unwanted_characters: </b>Unwanted characters are removed. After cleaning the transcripts, the text is extracted and saved in a txt file which can be used for training the language model.</p>
 <p><b>- split_dataset: </b>The final transcripts are splitted into train, test, and dev files and stored in "./final_csv". (train: 75%, test: 15%, dev: 10%)</p>
+<p><b>- audio_metrics: </b>After the converter has successfully run, audio metrics and metrics on the subsets of the dataset are provided</p>
 <br>
 <p><b>Estimation on execution time: </b>full processing with all above modules took 1h 11m for an audio-dataset of 12GB.</p>
 
