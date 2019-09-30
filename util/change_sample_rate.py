@@ -6,7 +6,7 @@ import sys
 import shutil
 
 def pre_process_audio(audio_path):
-    path_audio_processed = './ready_for_slice_2/'
+    path_audio_processed = './ready_for_slice/'
     if not os.path.exists(path_audio_processed):
         try:
             os.mkdir(path_audio_processed)

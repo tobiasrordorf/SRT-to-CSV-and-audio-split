@@ -20,13 +20,14 @@ from util.merge_transcripts_and_files import merge_transcripts_and_wav_files
 from util.clean import clean_unwanted_characters
 from util.split import split_dataset
 from util.audio_metrics import audio_metrics
+from util.trans_numbers import translate_numbers
 
 start_time = time.time()
 
 #Check if srt_files directory exists and contains srt files
 
 srt_path = './srt_files'
-'''
+
 if os.path.exists(srt_path):
     print('Folder %s exists.. continuing processing..' %srt_path)
 else:
@@ -62,18 +63,18 @@ srt_counter = len(glob('./srt_files/' + '*.srt'))
 if srt_counter == 0:
     print('!!! Please add srt_file(s) to %s-folder' %srt_path)
     sys.exit()
-'''
+
 ################################################################################
 #############################CALL THE FUNCTIONS#################################
 
 #Create directories
 create_directories()
-'''
+
 #Changing encoding from "cp1252" (a.k.a Windows 1252)to "utf-8-sig"
 print('Encoding srt_file(s) to utf8...')
 for srt in glob('./srt_files/*.srt'):
     change_encoding(srt)
-print('Encoding of %s-files changed' %srt_counter)
+print('Encoding of %s-file(s) changed' %srt_counter)
 print('---------------------------------------------------------------------')
 
 #Extracting information from srt-files to csv
@@ -96,10 +97,10 @@ print('MP4 to WAV convert complete')
 print('---------------------------------------------------------------------')
 
 #Pre-process audio for folder in which wav files are stored
-pre_process_audio('./ready_for_slice/')
+pre_process_audio(audio_path)
 print('Pre-processing of audio files is complete.')
 print('---------------------------------------------------------------------')
-'''
+
 #now slice audio according to start- and end-times in csv
 print('Slicing audio according to start- and end_times of transcript_csvs...')
 for item in glob('./ready_for_slice/*.csv'):
@@ -129,18 +130,20 @@ merge_transcripts_and_wav_files(transcript_path, DS_path)
 print('Final DS csv generated.')
 print('---------------------------------------------------------------------')
 
-#clean the data of unwanted characters
+#clean the data of unwanted characters and translate numbers from int to words
 final_csv_path = 'DS_training_final.csv'
+cleaned_csv_path = 'DS_training_final_char_removed.csv'
 clean_unwanted_characters(final_csv_path)
-print('Unwanted characters cleaned.')
+translate_numbers(cleaned_csv_path)
+print('Unwanted characters cleaned and numbers translated to words.')
 print('---------------------------------------------------------------------')
 
 #write transcript to text-file for language model
-df_text = pd.read_csv('./merged_csv/DS_training_final_cleaned.csv')
+df_text = pd.read_csv('./merged_csv/DS_training_final_char_removed_cleaned.csv')
 df_text['transcript'].to_csv('./final_csv/txt_for_lm.txt', header=None, index=None, mode='a')
 
 #Now split the data into three subsets
-to_split_path = 'DS_training_final_cleaned.csv'
+to_split_path = 'DS_training_final_char_removed_cleaned.csv'
 split_dataset(to_split_path)
 print('Datasplit completed.')
 
