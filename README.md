@@ -25,7 +25,7 @@ Therefore, this repo offers the possibility to easily split audio files based on
 
 <b>This section will explain what the modules and script do in order to provide a deeper understanding of the individual steps and facilitate modification</b>
 
-FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with encoding "cp1252" (a.k.a Windows 1252). The reason for this is that in order to keep characters such as "ä", the files have to be encoded to "utf8". If your files are alread in "utf8", then deactive the module "change_encoding"
+FYI: the script "convert_srt_to_csv.py" is meant to be used on srt files with encoding "cp1252" (a.k.a Windows 1252). The reason for this is that in order to keep characters such as "ä", the files have to be encoded to "utf8". If your files are already in "utf8", then deactive the module "change_encoding".
 
 <b>First:</b> Create a folder called "srt_files" where you store your srt_files and a folder "audio" where you store your audio-files (wmv or mp4).
 
